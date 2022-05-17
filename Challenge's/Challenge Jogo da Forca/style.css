@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Overpass:wght@400;600;700&display=swap');
+
+
+html, body {
+    height: 100%;
+    font-family: 'Overpass', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    display: flex;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+}
+
+#game {
+    width: 95%;
+    max-width: 500px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(71, 71, 153);
+}
+
+#help, #stats {
+    color: rgb(58, 58, 60);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.title {
+    color: black;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin: 0.3rem 0 0.1rem 0;
+    text-align: center;
+    font-family: 'Overpass', sans-serif;
+}
+
+@media only screen and (max-width: 480px) {
+    .title {
+        font-size: 1.8rem;
+    }
+}
+
+#board-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+#board {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+}
+
+.row {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 5px;
+}
+
+.square {
+    border: 2px solid #a2a5a8;
+    min-width: 50px;
+    min-height: 55px;
+    margin: 0px 2px;
+    color: black;
+    text-transform: uppercase;
+    cursor: pointer;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 2rem;
+    font-weight: bold;
+    vertical-align: middle;
+    box-sizing: border-box;
+    user-select: none;
+    font-size: 2rem;
+}
+
+
+
+@media only screen and (max-width: 500px) {
+    .square {
+        /* min-width: 15vw;
+        min-height: 15vw; */
+        min-width: 38px;
+        min-height: 55px;
+    }
+}
+
+#keyboard-container {
+    height: 175px; /* 200px com height do botão de 58px */
+}
+
+.keyboard-row {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin: 0 auto 8px;
+    touch-action: manipulation;
+}
+
+.keyboard-row button {
+    font-family: inherit;
+    font-weight: bold;
+    border: 0;
+    padding: 0;
+    height: 50px;
+    cursor: pointer;
+    background-color: #d3d6da;
+    color: black;
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: 0%;
+    text-transform: uppercase;
+    margin-right: 6px;
+    border-radius: 4px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    padding: 3px;
+}
+
+.keyboard-row button.wide-button {
+    flex-grow: 1.5;
+    
+}
+
+.spacer-half {
+    flex-grow: 0.5;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(71, 71, 153, 0.7);
+}
+
+.modal-content {
+    background-color: rgb(71, 71, 153);
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    color: gainsboro;
+    max-width: 500px;
+}
+
+.modal-content hr {
+    border: 1px solid rgb(58, 58, 60);
+}
+
+/* Os botões de fechar os modais */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 35px;
+    font-weight: bold;
+    
+}
+
+.close:hover, .close:focus {
+    color: #24bb75;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+.hidden {
+    display: none;
+}
+
+.correto {
+    background-color: #6aaa64;
+    border-color: #6aaa64;
+    color: white;
+}
+
+.color-black {
+    color: black;
+}
+
+.sem-tentativas {
+    background-color: #c9b458;
+    border-color: #c9b458;
+    color: white;
+}
+
+.cor-amarela-titulo {
+    color: #c9b458;
+}
+
+.keyboard-row button.letra-errada {
+    background-color: indianred;
+    color: white;
+}
+
+.keyboard-row button.letra-certa {
+    background-color: #6aaa64;
+    color: white;
+}
+
+#jogar-denovo {
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+}
+
+#btn-jogar-denovo {
+    padding: 5px 7px;
+    cursor: pointer;
+    font-family: 'Overpass', sans-serif;
+    font-weight: 700;
+    color: white;
+    background-color: rgb(71, 71, 153);
+    border: none;
+    font-size: 18px;
+    border-radius: 7px;
+    transition: all 0.5s ease;
+}
+
+#btn-jogar-denovo:hover {
+    background-color: #24bb75;
+}
+
+#novapalavra {
+    border: none;
+    padding: 8px;
+    border-radius: 6px;
+    font-family: 'Overpass', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+#btn-novapalavra {
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Overpass', sans-serif;
+    background-color: white;
+    font-weight: 700;
+    color: #24bb75;
+    margin: 5px;
+    font-size: 17px;
+    border-radius: 6px;
+    transition: all 0.5s ease;
+}
+
+#btn-novapalavra:hover {
+    color: white;
+    background-color: #24bb75;
+}
+
+#btn-removerpalavra {
+    padding: 8px 20px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Overpass', sans-serif;
+    background-color: white;
+    font-weight: 700;
+    color: indianred;
+    margin: 0px;
+    font-size: 17px;
+    border-radius: 6px;
+    transition: all 0.5s ease;
+}
+
+#btn-removerpalavra:hover {
+    color: white;
+    background-color: indianred;
+}
+
+.progresso {
+    margin: 0px;
+    padding: 0px;
+    width: 160px;
+    height: 16px;
+}
+
+progress {
+    display: block;
+    -webkit-appearance: none;
+    padding: 3px
+}
+
+progress::-webkit-progress-bar {
+    background: #efefef;
+    border-radius: 50px;
+    border: 1px solid #8a8888;
+}
+
+progress::-webkit-progress-value {
+    background: #4223b4;
+    border-radius: 50px;
+}
+
+#paragrafo {
+    font-size: 20px;
+    margin: 10px 0px 0px 0px;
+    color: white;
+}
+
+#paragrafo-menor {
+    font-size: 15px;
+    margin: 0px 0px 15px 0px;
+    color: rgb(190, 190, 190);
+}
